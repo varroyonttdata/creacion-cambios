@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: creacion-cambios
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.nttdata.caixa.gestion.cloud.backend.config.SQLiteDialect
+    show-sql: true
+  datasource:
+    url: jdbc:sqlite:creacion-cambios.db
+    driver-class-name: org.sqlite.JDBC
+    username: admin
+    password: admin
+    
