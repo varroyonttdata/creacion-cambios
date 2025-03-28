@@ -1,6 +1,8 @@
 package com.nttdata.caixa.gestion.cloud.backend.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +21,8 @@ public class Environments {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "environments_seq")
     @SequenceGenerator(name = "environments_seq", allocationSize = 1)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
     private Environment environment;
 
     @ManyToOne

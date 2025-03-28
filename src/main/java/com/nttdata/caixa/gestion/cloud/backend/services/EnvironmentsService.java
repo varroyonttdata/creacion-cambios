@@ -1,12 +1,11 @@
 package com.nttdata.caixa.gestion.cloud.backend.services;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.Environments;
-import com.nttdata.caixa.gestion.cloud.backend.entities.enums.Environment;
+import com.nttdata.caixa.gestion.cloud.backend.exceptions.EnvironmentsException;
+
 
 public interface EnvironmentsService {
 
-    Environments findById(Long id);
-
-    Environments findByEnvironment(Environment environment);
+    Environments findById(Long id) throws EnvironmentsException;
 
 }

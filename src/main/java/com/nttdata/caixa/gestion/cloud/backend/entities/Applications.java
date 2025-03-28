@@ -40,6 +40,13 @@ public class Applications {
         this.type = type;
     }
 
+    public Applications(Long id, String name, Type type, List<Environments> environments) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.environments = environments;
+    }
+
     public Long getId() {
         return id;
     }
