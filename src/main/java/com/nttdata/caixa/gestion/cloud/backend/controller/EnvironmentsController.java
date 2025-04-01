@@ -33,19 +33,20 @@ public class EnvironmentsController {
         this.environmentsServiceImpl = environmentsServiceImpl;
     }
 
-    // @PostMapping("/create")
-    // public ResponseEntity<Environments> createEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
-    //     Environments saved = environmentsServiceImpl.createEnvironments(environments);
-    //     logger.info("Entorno creado: " + saved);
-    //     return ResponseEntity.ok(saved);
-    // }
-
-    @PostMapping("/create/{id}")
-    public ResponseEntity<Environments> createEnvironments(@PathVariable Long id, @RequestBody Environments environments) throws EnvironmentsException, ApplicationsException {
-        Environments saved = environmentsServiceImpl.createtest(environments, id);
+    @PostMapping("/create")
+    public ResponseEntity<Environments> createEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
+        Environments saved = environmentsServiceImpl.createEnvironments(environments);
         logger.info("Entorno creado: " + saved);
         return ResponseEntity.ok(saved);
     }
+
+    //TODO Metodo createEnvironments no agrega dependencia application_id a los entornos creados, ver que pasa, update seguramente tp funcione.
+    // @PostMapping("/create/{id}")
+    // public ResponseEntity<Environments> createEnvironments(@PathVariable Long id, @RequestBody Environments environments) throws EnvironmentsException, ApplicationsException {
+    //     Environments saved = environmentsServiceImpl.createtest(environments, id);
+    //     logger.info("Entorno creado: " + saved);
+    //     return ResponseEntity.ok(saved);
+    // }
 
     @PutMapping("/update")
     public ResponseEntity<Environments> updateEnvironments(@RequestBody Environments environments) throws EnvironmentsException {

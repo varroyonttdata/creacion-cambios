@@ -57,16 +57,17 @@ public class EnvironmentsServiceImpl implements EnvironmentsService {
 
     }
 
-    public Environments createtest(Environments environments, Long id) throws EnvironmentsException, ApplicationsException {
-        Applications searched = this.applicationsServiceImpl.findById(id);
-        Environments saved = this.environmentsRepository.save(environments);
-        searched.setEnvironments(Arrays.asList(saved));
-        environments.setApplications(searched);
+    //TODO Metodo createEnvironments no agrega dependencia application_id al environments, ver que pasa. update seguramente tp funcione.
+    // public Environments createtest(Environments environments, Long id) throws EnvironmentsException, ApplicationsException {
+    //     Applications searched = this.applicationsServiceImpl.findById(id);
+    //     Environments saved = this.environmentsRepository.save(environments);
+    //     searched.setEnvironments(Arrays.asList(saved));
+    //     environments.setApplications(searched);
 
 
-        logger.info("Entorno creado: " + saved);
-        return saved;
-    }
+    //     logger.info("Entorno creado: " + saved);
+    //     return saved;
+    // }
 
     @Override
     public Environments updateEnvironments(Environments environments) throws EnvironmentsException {
