@@ -21,7 +21,7 @@ public class Component {
     private Long id;
     
     private String name;
-    private String replica;
+    private Integer replica;
     private Long componentId;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public class Component {
     public Component() {
     }
 
-    public Component(Long id, String name, String replica, Long componentId, ComponentType componentType) {
+    public Component(Long id, String name, Integer replica, Long componentId, ComponentType componentType) {
         this.id = id;
         this.name = name;
         this.replica = replica;
@@ -54,11 +54,11 @@ public class Component {
         this.name = name;
     }
 
-    public String getReplica() {
+    public Integer getReplica() {
         return replica;
     }
 
-    public void setReplica(String replica) {
+    public void setReplica(Integer replica) {
         this.replica = replica;
     }
 

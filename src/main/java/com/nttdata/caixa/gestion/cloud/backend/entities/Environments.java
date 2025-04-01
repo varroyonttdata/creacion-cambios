@@ -1,5 +1,6 @@
 package com.nttdata.caixa.gestion.cloud.backend.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.enums.Environment;
 
@@ -54,7 +57,15 @@ public class Environments {
         this.environment = environment;
     }
 
+    public Applications getApplications() {
+        return applications;
+    }
 
+    public void setApplications(Applications applications) {
+        this.applications = applications;
+    }
+
+    
 
 
     

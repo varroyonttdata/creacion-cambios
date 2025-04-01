@@ -5,6 +5,12 @@ import com.nttdata.caixa.gestion.cloud.backend.entities.enums.ComponentType;
 
 public interface ComponentServices {
 
+    Component createComponent(Component component);
+
+    Component updateComponent(Component component);
+
+    void deleteComponentById(Long id);
+
     Component findById(Long id);
 
     Component findByName(String name);

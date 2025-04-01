@@ -70,6 +70,15 @@ public class Applications {
     public void setType(Type type) {
         this.type = type;
     }
+
+    public List<Environments> getEnvironments() {
+        return environments;
+    }
+
+    public void setEnvironments(List<Environments> environments) {
+        this.environments = environments;
+    }
+    
     
 
 

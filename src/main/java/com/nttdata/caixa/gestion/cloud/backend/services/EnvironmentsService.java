@@ -8,4 +8,10 @@ public interface EnvironmentsService {
 
     Environments findById(Long id) throws EnvironmentsException;
 
+    Environments createEnvironments(Environments environments) throws EnvironmentsException;
+
+    Environments updateEnvironments(Environments environments) throws EnvironmentsException;
+
+    void deleteEnvironmentsById(Long id) throws EnvironmentsException;
+
 }
