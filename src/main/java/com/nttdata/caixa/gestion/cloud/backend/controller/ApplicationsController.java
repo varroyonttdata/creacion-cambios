@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.Applications;
+import com.nttdata.caixa.gestion.cloud.backend.entities.dto.ApplicationsDTO;
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.ApplicationsException;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.ApplicationsServiceImpl;
 
@@ -34,14 +35,14 @@ public class ApplicationsController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<Applications> createApplications (@RequestBody Applications applications) throws ApplicationsException{
+    public ResponseEntity<ApplicationsDTO> createApplications (@RequestBody Applications applications) throws ApplicationsException{
         logger.info("Aplicación creada: " + applications);
         return ResponseEntity.ok(applicationsServiceImpl.createApplications(applications));
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Applications> updateApplications (@RequestBody Applications applications) throws ApplicationsException{
-        Applications updated = applicationsServiceImpl.updateApplications(applications);
+    public ResponseEntity<ApplicationsDTO> updateApplications (@RequestBody Applications applications) throws ApplicationsException{
+        ApplicationsDTO updated = applicationsServiceImpl.updateApplications(applications);
         logger.info("Aplicación modificada: " + updated);
         return ResponseEntity.ok(updated);
     }
@@ -53,28 +54,29 @@ public class ApplicationsController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Applications> findById(@PathVariable Long id) throws ApplicationsException {
+    public ResponseEntity<ApplicationsDTO> findById(@PathVariable Long id) throws ApplicationsException {
         logger.trace("Se busca aplicación con id: ", id);
-        Applications search = this.applicationsServiceImpl.findById(id);
+        ApplicationsDTO search = this.applicationsServiceImpl.findById(id);
 
         return ResponseEntity.ok(search);
     }
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<Applications> findByName(@PathVariable String name) throws ApplicationsException {
+    public ResponseEntity<ApplicationsDTO> findByName(@PathVariable String name) throws ApplicationsException {
         logger.trace("Se busca aplicación con nombre: ", name);
         return ResponseEntity.ok(this.applicationsServiceImpl.findByName(name));
     }
 
     @GetMapping("/type/{type}")
-    public ResponseEntity<List<Applications>> findAllByType(@PathVariable String type) throws ApplicationsException {
+    public ResponseEntity<List<ApplicationsDTO>> findAllByType(@PathVariable String type) throws ApplicationsException {
         logger.trace("Se busca aplicaciones por tipo: ", type);
-        return ResponseEntity.ok(this.applicationsServiceImpl.findAllByType(type));
+        List<ApplicationsDTO> searched = this.applicationsServiceImpl.findAllByType(type);
+        return ResponseEntity.ok(searched);
     
     }
 
     @GetMapping("/environments/{id}")
-    public ResponseEntity<Applications> findApplicationsByEnvironmentsId(@PathVariable Long id) throws ApplicationsException {
+    public ResponseEntity<ApplicationsDTO> findApplicationsByEnvironmentsId(@PathVariable Long id) throws ApplicationsException {
         logger.trace("Se busca aplicación con id de entorno: ", id);
         return ResponseEntity.ok(this.applicationsServiceImpl.findApplicationsByEnvironmentsId(id));
     }

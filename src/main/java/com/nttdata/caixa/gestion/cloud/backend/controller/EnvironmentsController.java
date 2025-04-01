@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.Environments;
+import com.nttdata.caixa.gestion.cloud.backend.entities.dto.EnvironmentsDTO;
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.ApplicationsException;
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.EnvironmentsException;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.EnvironmentsServiceImpl;
@@ -34,8 +35,8 @@ public class EnvironmentsController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Environments> createEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
-        Environments saved = environmentsServiceImpl.createEnvironments(environments);
+    public ResponseEntity<EnvironmentsDTO> createEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
+        EnvironmentsDTO saved = environmentsServiceImpl.createEnvironments(environments);
         logger.info("Entorno creado: " + saved);
         return ResponseEntity.ok(saved);
     }
@@ -49,28 +50,28 @@ public class EnvironmentsController {
     // }
 
     @PutMapping("/update")
-    public ResponseEntity<Environments> updateEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
-        Environments updated = environmentsServiceImpl.updateEnvironments(environments);
+    public ResponseEntity<EnvironmentsDTO> updateEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
+        EnvironmentsDTO updated = environmentsServiceImpl.updateEnvironments(environments);
         logger.info("Entorno actualizado: " + updated);
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEnvironmentsById(@PathVariable Long id) throws EnvironmentsException {
-        Environments toDelete = environmentsServiceImpl.findById(id);
+        EnvironmentsDTO toDelete = environmentsServiceImpl.findById(id);
         logger.info("Entorno a borrar: " + toDelete);
         environmentsServiceImpl.deleteEnvironmentsById(id);
         return ResponseEntity.ok("Entorno borrado: " + id);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Environments> findById(@PathVariable Long id) throws EnvironmentsException{
+    public ResponseEntity<EnvironmentsDTO> findById(@PathVariable Long id) throws EnvironmentsException{
         logger.trace("Se busca entorno con id: ", id);
         return ResponseEntity.ok(environmentsServiceImpl.findById(id));
     }
 
     @GetMapping("/environment/{environment}")
-    public ResponseEntity<List<Environments>> findAllByEnvironment(@PathVariable String environment) throws EnvironmentsException {
+    public ResponseEntity<List<EnvironmentsDTO>> findAllByEnvironment(@PathVariable String environment) throws EnvironmentsException {
         logger.trace("Se buscan todos los entornos por entorno.");
         return ResponseEntity.ok(environmentsServiceImpl.findAllByEnvironment(environment));
     }

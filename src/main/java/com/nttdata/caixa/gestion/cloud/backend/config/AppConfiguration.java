@@ -31,4 +31,10 @@ public class AppConfiguration {
     public ComponentServiceImpl componentServicesImpl(ComponentRepository componentRepository, ModelMapper mapper) {
         return new ComponentServiceImpl(componentRepository, mapper);
     }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        final ModelMapper modelMapper = new ModelMapper();
+        return modelMapper;
+    }
 }

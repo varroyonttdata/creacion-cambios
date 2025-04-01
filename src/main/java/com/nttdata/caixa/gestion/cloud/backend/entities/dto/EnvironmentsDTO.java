@@ -6,16 +6,16 @@ public class EnvironmentsDTO {
 
     private Long id;
     private Environment environment;
-    private Long application_id;
+    private Long applications_id;
 
 
     public EnvironmentsDTO() {
     }
 
-    public EnvironmentsDTO(Long id, Environment environment, Long application_id) {
+    public EnvironmentsDTO(Long id, Environment environment, Long applications_id) {
         this.id = id;
         this.environment = environment;
-        this.application_id = application_id;
+        this.applications_id = applications_id;
     }
 
     public Long getId() {
@@ -34,12 +34,12 @@ public class EnvironmentsDTO {
         this.environment = environment;
     }
 
-    public Long getApplication_id() {
-        return application_id;
+    public Long getApplications_id() {
+        return applications_id;
     }
 
-    public void setApplication_id(Long application_id) {
-        this.application_id = application_id;
+    public void setApplication_id(Long applications_id) {
+        this.applications_id = applications_id;
     }
 
     
