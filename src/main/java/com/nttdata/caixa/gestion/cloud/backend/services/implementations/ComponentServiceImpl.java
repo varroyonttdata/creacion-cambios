@@ -9,6 +9,7 @@ import com.nttdata.caixa.gestion.cloud.backend.repositories.ComponentRepository;
 import com.nttdata.caixa.gestion.cloud.backend.services.ComponentServices;
 
 
+@SuppressWarnings("unused")
 public class ComponentServiceImpl implements ComponentServices {
 
     private final ComponentRepository componentRepository;

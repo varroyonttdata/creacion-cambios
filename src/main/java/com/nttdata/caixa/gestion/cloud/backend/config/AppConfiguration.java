@@ -10,9 +10,6 @@ import com.nttdata.caixa.gestion.cloud.backend.entities.dto.EnvironmentsDTO;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.ApplicationsRepository;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.ComponentRepository;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.EnvironmentsRepository;
-import com.nttdata.caixa.gestion.cloud.backend.services.ApplicationsService;
-import com.nttdata.caixa.gestion.cloud.backend.services.ComponentServices;
-import com.nttdata.caixa.gestion.cloud.backend.services.EnvironmentsService;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.ApplicationsServiceImpl;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.ComponentServiceImpl;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.EnvironmentsServiceImpl;
@@ -26,8 +23,8 @@ public class AppConfiguration {
     }
 
     @Bean
-    public EnvironmentsServiceImpl environmentsServiceImpl(EnvironmentsRepository environmentsRepository, ModelMapper mapper, ApplicationsServiceImpl applicationsServiceImpl, ApplicationsRepository applicationsRepository) {
-        return new EnvironmentsServiceImpl(environmentsRepository, mapper, applicationsServiceImpl, applicationsRepository);
+    public EnvironmentsServiceImpl environmentsServiceImpl(EnvironmentsRepository environmentsRepository, ModelMapper mapper, ApplicationsRepository applicationsRepository) {
+        return new EnvironmentsServiceImpl(environmentsRepository, mapper, applicationsRepository);
     }
 
     @Bean

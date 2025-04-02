@@ -11,7 +11,6 @@ import com.nttdata.caixa.gestion.cloud.backend.repositories.EnvironmentsReposito
 import com.nttdata.caixa.gestion.cloud.backend.services.EnvironmentsService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,6 @@ import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 
 
 public class EnvironmentsServiceImpl implements EnvironmentsService {
@@ -29,13 +27,11 @@ public class EnvironmentsServiceImpl implements EnvironmentsService {
 
     private final EnvironmentsRepository environmentsRepository;
     private ModelMapper mapper;
-    private ApplicationsServiceImpl applicationsServiceImpl;
     private ApplicationsRepository applicationsRepository;
 
-    public EnvironmentsServiceImpl(EnvironmentsRepository environmentsRepository, ModelMapper mapper, ApplicationsServiceImpl applicationsServiceImpl, ApplicationsRepository applicationsRepository) {
+    public EnvironmentsServiceImpl(EnvironmentsRepository environmentsRepository, ModelMapper mapper, ApplicationsRepository applicationsRepository) {
         this.environmentsRepository = environmentsRepository;
         this.mapper = mapper;
-        this.applicationsServiceImpl = applicationsServiceImpl;
         this.applicationsRepository = applicationsRepository;
     }
 
