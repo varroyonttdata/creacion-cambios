@@ -34,12 +34,6 @@ public class Applications {
     public Applications() {
     }
 
-    public Applications(Long id, String name, Type type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
-
     public Applications(Long id, String name, Type type, List<Environments> environments) {
         this.id = id;
         this.name = name;

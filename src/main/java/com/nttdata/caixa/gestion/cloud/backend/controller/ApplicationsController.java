@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.Applications;
+import com.nttdata.caixa.gestion.cloud.backend.entities.Environments;
 import com.nttdata.caixa.gestion.cloud.backend.entities.dto.ApplicationsDTO;
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.ApplicationsException;
+import com.nttdata.caixa.gestion.cloud.backend.exceptions.EnvironmentsException;
 import com.nttdata.caixa.gestion.cloud.backend.services.implementations.ApplicationsServiceImpl;
 
 @RestController
@@ -32,7 +35,6 @@ public class ApplicationsController {
     public ApplicationsController(ApplicationsServiceImpl applicationsServiceImpl) {
         this.applicationsServiceImpl = applicationsServiceImpl;
     }
-
 
     @PostMapping("/create")
     public ResponseEntity<ApplicationsDTO> createApplications (@RequestBody Applications applications) throws ApplicationsException{
@@ -81,8 +83,14 @@ public class ApplicationsController {
         return ResponseEntity.ok(this.applicationsServiceImpl.findApplicationsByEnvironmentsId(id));
     }
 
+    @PutMapping("/add/{id}")
+    public ResponseEntity<ApplicationsDTO> updateEnvironmentsToApplications(@RequestBody Environments environments, @PathVariable Long id) throws ApplicationsException {
 
-    @ExceptionHandler({ApplicationsException.class})
+        return ResponseEntity.ok(this.applicationsServiceImpl.updateEnvironmentsToApplications(environments, id));
+    }
+
+    //TODO Configurar Excepciones para que funcionen correctamente.
+    @ExceptionHandler({EnvironmentsException.class, ApplicationsException.class})
     public ResponseEntity<?> handlerApplicationsException(ApplicationsException applicationsException) {
         return new ResponseEntity<>(applicationsException.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

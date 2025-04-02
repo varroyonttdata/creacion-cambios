@@ -38,7 +38,7 @@ public class EnvironmentsDTO {
         return applications_id;
     }
 
-    public void setApplication_id(Long applications_id) {
+    public void setApplications_id(Long applications_id) {
         this.applications_id = applications_id;
     }
 

@@ -28,7 +28,7 @@ public class Environments {
     @Enumerated(EnumType.STRING)
     private Environment environment;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "applications_id")
     private Applications applications;
 

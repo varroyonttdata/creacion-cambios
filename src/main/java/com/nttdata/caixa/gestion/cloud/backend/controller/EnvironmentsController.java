@@ -41,13 +41,12 @@ public class EnvironmentsController {
         return ResponseEntity.ok(saved);
     }
 
-    //TODO Metodo createEnvironments no agrega dependencia application_id a los entornos creados, ver que pasa, update seguramente tp funcione.
-    // @PostMapping("/create/{id}")
-    // public ResponseEntity<Environments> createEnvironments(@PathVariable Long id, @RequestBody Environments environments) throws EnvironmentsException, ApplicationsException {
-    //     Environments saved = environmentsServiceImpl.createtest(environments, id);
-    //     logger.info("Entorno creado: " + saved);
-    //     return ResponseEntity.ok(saved);
-    // }
+    @PostMapping("/create/{id}")
+    public ResponseEntity<EnvironmentsDTO> createEnvironmentswithApplications(@PathVariable Long id, @RequestBody Environments environments) throws EnvironmentsException, ApplicationsException {
+        EnvironmentsDTO saved = environmentsServiceImpl.createEnvironmentsWithApplications(environments, id);
+        logger.info("Entorno creado: " + saved);
+        return ResponseEntity.ok(saved);
+    }
 
     @PutMapping("/update")
     public ResponseEntity<EnvironmentsDTO> updateEnvironments(@RequestBody Environments environments) throws EnvironmentsException {
@@ -77,7 +76,7 @@ public class EnvironmentsController {
     }
 
 
-    @ExceptionHandler({EnvironmentsException.class})
+    @ExceptionHandler({EnvironmentsException.class, ApplicationsException.class})
     public ResponseEntity<?> handlerEnvironmentsException(EnvironmentsException environmentsException) {
         return new ResponseEntity<>(environmentsException.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
