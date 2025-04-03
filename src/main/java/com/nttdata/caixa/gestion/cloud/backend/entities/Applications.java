@@ -72,6 +72,11 @@ public class Applications {
     public void setEnvironments(List<Environments> environments) {
         this.environments = environments;
     }
+
+    @Override
+    public String toString() {
+        return "Applications [id=" + id + ", name=" + name + ", type=" + type + ", environments=" + environments + "]";
+    }
     
     
 

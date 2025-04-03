@@ -93,6 +93,4 @@ public class ApplicationsController {
     public ResponseEntity<?> handlerApplicationsException(ApplicationsException applicationsException) {
         return new ResponseEntity<>(applicationsException.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-
 }

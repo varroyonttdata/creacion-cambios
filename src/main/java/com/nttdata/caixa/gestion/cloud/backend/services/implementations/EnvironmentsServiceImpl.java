@@ -100,7 +100,6 @@ public class EnvironmentsServiceImpl implements EnvironmentsService {
         this.environmentsRepository.delete(searched);
     }
 
-    //TODO: No mapea correctamente el applications_id, tengo que corregirlo.
     private EnvironmentsDTO changeToEnvironmentsDTO (Environments environments) {
         return this.mapper.map(environments, EnvironmentsDTO.class);
     }
