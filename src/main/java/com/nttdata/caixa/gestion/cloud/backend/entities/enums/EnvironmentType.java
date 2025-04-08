@@ -1,6 +1,6 @@
 package com.nttdata.caixa.gestion.cloud.backend.entities.enums;
 
-public enum Environment {
+public enum EnvironmentType {
     PRO1,
     PRO2,
     PRE1,
