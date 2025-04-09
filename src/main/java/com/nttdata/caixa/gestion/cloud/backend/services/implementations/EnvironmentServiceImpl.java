@@ -4,7 +4,6 @@ package com.nttdata.caixa.gestion.cloud.backend.services.implementations;
 import com.nttdata.caixa.gestion.cloud.backend.entities.Environment;
 import com.nttdata.caixa.gestion.cloud.backend.entities.dto.EnvironmentDTO;
 import com.nttdata.caixa.gestion.cloud.backend.entities.enums.EnvironmentType;
-
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.EnvironmentException;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.EnvironmentRepository;
 import com.nttdata.caixa.gestion.cloud.backend.services.EnvironmentService;
@@ -28,7 +27,7 @@ public class EnvironmentServiceImpl implements EnvironmentService {
     private ModelMapper mapper;
 
     public EnvironmentServiceImpl(EnvironmentRepository environmentRepository, ModelMapper mapper) {
-        this.environmentRepository = environmentRepository;
+        this.environmentRepository = environmentRepository;;
         this.mapper = mapper;
     }
 
@@ -59,25 +58,6 @@ public class EnvironmentServiceImpl implements EnvironmentService {
         return this.changeToEnvironmentDTO(saved);
 
     }
-
-    //Esto sirve para algo despues de modificar el servicio????
-
-    // public EnvironmentDTO createEnvironmentsWithComponent(ComponentEnvironment componentEnvironment, Long id) throws EnvironmentException, ComponentException {
-    //     Component component = this.componentRepository.findById(id).orElseThrow(() -> new ComponentException("No se ha encontrado el id: " + id));
-    //     if (component.getEnvironment().isEmpty()) {
-    //         component.setEnvironment(new ArrayList<Environment>());
-    //         logger.trace("Creada lista de entornos vacia y asignada a aplicación");
-    //     }
-    //     List<Environment> envList = component.getEnvironment();
-    //     envList.add(environment);
-    //     component.setEnvironment(envList);
-    //     logger.info("Actualizada la lista de entornos de la aplicación :" + envList);
-    //     environment.setComponent(component);
-    //     logger.info("Asignada aplicación al entorno");
-    //     this.componentRepository.save(component);
-    //     Environment saved = this.environmentRepository.save(environment);
-    //     return this.changeToEnvironmentDTO(saved);
-    // }
 
     @Transactional
     @Override

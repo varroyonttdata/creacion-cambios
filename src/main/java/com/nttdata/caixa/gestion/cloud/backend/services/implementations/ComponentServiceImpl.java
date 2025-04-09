@@ -31,12 +31,10 @@ public class ComponentServiceImpl implements ComponentService {
     private static final Logger logger = LogManager.getLogger(ComponentServiceImpl.class);
 
     private final ComponentRepository componentRepository;
-    private final ComponentEnvironmentRepository componentEnvironmentRepository;
     private ModelMapper mapper;
 
-    public ComponentServiceImpl(ComponentRepository componentRepository, ComponentEnvironmentRepository componentEnvironmentRepository, ModelMapper mapper) {
+    public ComponentServiceImpl(ComponentRepository componentRepository, ModelMapper mapper) {
         this.componentRepository = componentRepository;
-        this.componentEnvironmentRepository = componentEnvironmentRepository;
         this.mapper = mapper;
 
     }
@@ -90,25 +88,6 @@ public class ComponentServiceImpl implements ComponentService {
         }
         logger.info("Componentes encontrados: " + searched);
         return changeListToComponentDTOs(searched);
-    }
-
-    @Transactional
-    public ComponentDTO addComponentEnvironmentToComponent(ComponentEnvironment componentEnvironment, Long id) throws ComponentException {
-        Component component = this.componentRepository.findById(id).orElseThrow(() -> new ComponentException("No se ha encontrado el id: " + id));
-        if (component.getComponentEnvironments().isEmpty()) {
-            component.setComponentEnvironments(new ArrayList<ComponentEnvironment>());
-            logger.trace("Creada lista de componente-entorno vacia y asignada a componente");
-        }
-        List<ComponentEnvironment> compEnvList = component.getComponentEnvironments();
-        compEnvList.add(componentEnvironment);
-        component.setComponentEnvironments(compEnvList);
-        logger.info("Actualizada la lista de componente-entorno del componente :" + compEnvList);
-        componentEnvironment.setComponent(component);
-        logger.info("Asignado componente a componente-entorno: " + componentEnvironment);
-        Component componentSaved = this.componentRepository.save(component);
-        this.componentEnvironmentRepository.save(componentEnvironment);
-        return this.changeToComponentDTO(componentSaved);
-        
     }
 
     private ComponentDTO changeToComponentDTO (Component component) {

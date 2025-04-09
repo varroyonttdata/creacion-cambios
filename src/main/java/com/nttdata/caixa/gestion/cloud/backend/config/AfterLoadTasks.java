@@ -22,16 +22,17 @@ public class AfterLoadTasks implements ApplicationListener<ApplicationReadyEvent
     public void onApplicationEvent(ApplicationReadyEvent event) {
         loadDefaultEnvironments();
     }
-
+    
     private void loadDefaultEnvironments() {
         logger.debug("Comprobando si existen los entornos por defecto...");
 
         for (EnvironmentType environmentType : EnvironmentType.values()) {
-            final Environment found = this.environmentService.findByEnvironmentType(environmentType).orElse(null);
-            if(found == null) {
+
+        this.environmentService.findByEnvironmentType(environmentType).orElseGet(() -> {
                 final Environment created = this.environmentService.createEnvironment(new Environment(environmentType));
-                logger.debug("Se ha creado el rol [{}]", created);
-            }
+                logger.debug("Se ha creado el entorno [{}]", created);
+                return created;
+            });
         }
     }
 }

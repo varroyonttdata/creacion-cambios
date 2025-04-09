@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nttdata.caixa.gestion.cloud.backend.entities.Component;
-import com.nttdata.caixa.gestion.cloud.backend.entities.ComponentEnvironment;
 import com.nttdata.caixa.gestion.cloud.backend.entities.dto.ComponentDTO;
 import com.nttdata.caixa.gestion.cloud.backend.entities.enums.ComponentType;
 import com.nttdata.caixa.gestion.cloud.backend.exceptions.ComponentException;
@@ -67,11 +66,6 @@ public class ComponentController {
     public ResponseEntity<String> deleteComponentById (@PathVariable Long id) throws ComponentException {
         componentServiceImpl.deleteComponentById(id);
         return ResponseEntity.ok("Componente borrado: " + id);
-    }
-
-    @PutMapping("/add/{componentId}")
-    public ResponseEntity<ComponentDTO> addComponentEnvironmentToComponent(@RequestBody ComponentEnvironment componentEnvironment, @PathVariable Long componentId) throws ComponentException {
-        return ResponseEntity.ok(componentServiceImpl.addComponentEnvironmentToComponent(componentEnvironment, componentId));
     }
   
     @ExceptionHandler({ComponentException.class})

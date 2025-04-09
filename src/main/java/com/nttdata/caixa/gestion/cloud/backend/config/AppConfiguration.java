@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
+import com.nttdata.caixa.gestion.cloud.backend.aspect.ApplicationsAspect;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.ApplicationRepository;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.ComponentEnvironmentRepository;
 import com.nttdata.caixa.gestion.cloud.backend.repositories.ComponentRepository;
@@ -18,6 +18,10 @@ import com.nttdata.caixa.gestion.cloud.backend.services.implementations.Environm
 @Configuration
 public class AppConfiguration {
 
+    @Bean
+    public ApplicationsAspect applicationsAspect() {
+        return new ApplicationsAspect();
+    }
 
     @Bean
     public ApplicationServiceImpl applicationsServiceImpl(ApplicationRepository applicationsRepository, ModelMapper mapper, ComponentRepository componentRepository) {
@@ -25,13 +29,13 @@ public class AppConfiguration {
     }
 
     @Bean
-    public EnvironmentServiceImpl environmentsServiceImpl(EnvironmentRepository environmentsRepository, ModelMapper mapper) {
-        return new EnvironmentServiceImpl(environmentsRepository, mapper);
+    public EnvironmentServiceImpl environmentsServiceImpl(EnvironmentRepository environmentRepository, ModelMapper mapper) {
+        return new EnvironmentServiceImpl(environmentRepository, mapper);
     }
 
     @Bean
-    public ComponentServiceImpl componentServicesImpl(ComponentRepository componentRepository, ComponentEnvironmentRepository componentEnvironmentRepository, ModelMapper mapper) {
-        return new ComponentServiceImpl(componentRepository, componentEnvironmentRepository, mapper);
+    public ComponentServiceImpl componentServicesImpl(ComponentRepository componentRepository, ModelMapper mapper) {
+        return new ComponentServiceImpl(componentRepository, mapper);
     }
 
     @Bean
@@ -49,7 +53,7 @@ public class AppConfiguration {
     }
 
     @Bean
-    public ComponentEnvironmentService componentEnvironmentService(ComponentEnvironmentRepository componentEnvironmentRepository, ModelMapper mapper) {
-        return new ComponentEnvironmentServiceImpl(componentEnvironmentRepository, mapper);
+    public ComponentEnvironmentService componentEnvironmentService(ComponentRepository componentRepository, EnvironmentRepository environmentRepository, ComponentEnvironmentRepository componentEnvironmentRepository, ModelMapper mapper) {
+        return new ComponentEnvironmentServiceImpl(componentRepository, environmentRepository, componentEnvironmentRepository, mapper);
     }
 }

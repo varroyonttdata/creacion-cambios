@@ -34,6 +34,10 @@ public class ComponentEnvironment {
     public ComponentEnvironment() {
     }
 
+    public ComponentEnvironment(@NotNull Integer replica) {
+        this.replica = replica;
+    }
+
     public ComponentEnvironment(Long id, Integer replica) {
         this.id = id;
         this.replica = replica;
@@ -70,5 +74,12 @@ public class ComponentEnvironment {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+    @Override
+    public String toString() {
+        return "ComponentEnvironment [id=" + id + ", replica=" + replica + "]";
+    }
+
+    
 
 }
