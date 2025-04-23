@@ -34,7 +34,7 @@ public class ComponentEnvironmentServiceImpl implements ComponentEnvironmentServ
         this.componentEnvironmentRepository = componentEnvironmentRepository;
         this.mapper = mapper;
     }
-    //TODO Buscar tanto el Component como el Environment por id y llamando a addComponentAnd Environment 
+
     @Override
     public ComponentEnvironmentDTO createComponentEnvironment(Integer replica, Long componentId, Long environmentId) throws ComponentEnvironmentException, ComponentException, EnvironmentException{
         ComponentEnvironment created = new ComponentEnvironment(replica);
@@ -70,7 +70,6 @@ public class ComponentEnvironmentServiceImpl implements ComponentEnvironmentServ
         logger.info("Componente encontrado: " + searched);
         return this.changeToComponentEnvironmentDTO(searched);
     }
-    //TODO Borrar este metodo y meterlo en create diretamente para que cuando se cree un ComponentEnvironment se relacione directamente.
     
     private ComponentEnvironment addComponentAndEnvironmentToComponentEnvironment(ComponentEnvironment componentEnvironment, Long componentId, Long environmentId) throws ComponentEnvironmentException, ComponentException, EnvironmentException {
         ComponentEnvironment searched = componentEnvironmentRepository.findById(componentEnvironment.getId()).orElseThrow(() -> new ComponentEnvironmentException("No existe el componente con id: " + componentEnvironment.getId()));
