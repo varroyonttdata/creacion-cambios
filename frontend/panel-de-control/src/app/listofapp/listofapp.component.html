@@ -1,0 +1,11 @@
+<div>
+    @for (app of listOfApps; track app.id) {
+        <button (click)="selectApp(app.name)">{{app.name}}</button>
+    }
+</div>
+<div>
+    @if (appSelected !== '') {
+        <h3>Menú de {{appSelected}}</h3>
+    }
+</div>
+<app-menudeployment [listOfApps]="listOfApps" [appSelected]="appSelected"></app-menudeployment>

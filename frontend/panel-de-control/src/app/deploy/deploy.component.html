@@ -1,0 +1,14 @@
+<form>
+    <label>Componente</label>
+    <select id='componentSelect'>
+        @for (component of componentNames; track component.id) {
+            <option value='{{component.id}}'>{{component.name}}</option>
+        }
+    </select>
+    <label>Entorno</label>
+    <select id='environmentSelect'>
+        @for (environment of environmentNames; track environment.id) {
+            <option value='{{environment.id}}'>{{environment.name}}</option>
+        }
+    </select>
+</form>
