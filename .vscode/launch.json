@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CreacionCambiosApplication",
+            "request": "launch",
+            "mainClass": "com.nttdata.caixa.gestion.cloud.backend.CreacionCambiosApplication",
+            "projectName": "gestion-cloud-backend"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CreacionCambiosApplication<gestion-cloud-backend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.nttdata.caixa.gestion.cloud.backend.creacion_cambios.CreacionCambiosApplication",
+            "projectName": "gestion-cloud-backend",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=58752 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=gestion-cloud-backend"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+<div>
+    @for (app of listOfApps; track app.id) {
+        @if (appSelected === app.name) {
+            <div>
+                @for (menu of app.menus; track menu) {
+                    <button (click)="showMenu(menu)">{{menu}}</button>
+                }
+
+            </div>
+        }
+    }
+</div>
+<div>
+    @switch (currentMenu) {
+        @case ('DEPLOY') {
+            <app-deploy></app-deploy>
+        }
+        @case ('BUILD') {
+            <app-build></app-build>
+        }
+        @case ('RESTART') {
+            <app-restart></app-restart>
+        }
+        @case ('CHECKBUILD') {
+            <app-checkbuild></app-checkbuild>
+        }
+        @case ('UNDEPLOY') {
+            <app-undeploy></app-undeploy>
+        }
+        @default {
+        
+        }
+    }
+</div>
